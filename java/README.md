@@ -1,6 +1,6 @@
 ### Java Code Sample ^Java代码示例：
 * Java
-    + download the Java SDK by the following link ^下载 Java SDK， 链接为：https://github.com/XDAEX/API/raw/master/java/xdaex-trading-sdk-1.0.jar
+    + download the Java SDK by the following link ^下载 Java SDK， 链接为：https://github.com/hashkeypro/api-src/raw/master/java/hashkeypro-sdk-1.0.jar
 
     + REST API request example including signing ^包含签名步骤的 REST 请求示例
         ```JAVA
