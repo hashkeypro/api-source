@@ -1,7 +1,7 @@
 import asyncio
 import websockets
 
-async def hello(uri):
+async def Public_Message_Flow(uri):
     async with websockets.connect(uri) as websocket:
         await websocket.send('''{ "type": "subscribe", "channel": {"ticker":["ETH-BTC", "CYB-BTC"]} }''')
         while (1) :
