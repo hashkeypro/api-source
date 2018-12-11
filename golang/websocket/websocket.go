@@ -1,9 +1,6 @@
 package main
 
 import (
-	"crypto/hmac"
-	"crypto/sha256"
-	"encoding/base64"
 	"encoding/json"
 	"log"
 	"net/url"
@@ -11,19 +8,13 @@ import (
 	"os/signal"
 	"time"
 
-	"github.com/XDEAX/API/golang/eccutils"
 	"github.com/gorilla/websocket"
+	"github.com/hashkeypro/api-src/golang/hashkey"
 )
 
 type RequestMessage struct {
 	Type    string              `json:"type"`
 	Channel map[string][]string `json:"channel"`
-}
-
-func SHA256HMAC(data []byte, key string) string {
-	hmac := hmac.New(sha256.New, []byte(key))
-	hmac.Write(data)
-	return base64.StdEncoding.EncodeToString(hmac.Sum(nil))
 }
 
 func main() {
@@ -32,18 +23,17 @@ func main() {
 
 	msg := "WSS/APITradeWS/v1/messages"
 
-	authType := "PUB-PRIV"
-	apiKey := "MTU0MjEwNDAwMTA1NjAwMDAwMDAwNTQ="
-	privateKey := "uvX6WIUzE5jJLMszT7elkTMKgRZEoYkx7X7mTpPWyXo="
+	// authType := "PUB-PRIV"
+	// apiKey := "MTU0MjEwNDAwMTA1NjAwMDAwMDAwNTQ="
+	// privateKey := "uvX6WIUzE5jJLMszT7elkTMKgRZEoYkx7X7mTpPWyXo="
+	// sig, err := hashkey.ECCSignature([]byte(msg), privateKey)
 
-	// authType := "HMAC"
-	// apiKeyHMAC := "MTU0MjA3OTY5NjUzMDAwMDAwMDAwNTQ="
-	// secretKey := "TjjKc1jwm6GDXHplKd11qku5xtC4oT8zqGfQIoMKN+U="
+	authType := "HMAC"
+	apiKeyHMAC := "MTU0NDUwODQ0NjI0NTAwMDAwMDAwNTQ="
+	secretKey := "vprggEasLOksdmut6WcFvuv4oUuAbewdkGJY1fgAvBw="
+	hmacStr := hashkey.SHA256HMAC([]byte(msg), secretKey)
 
-	sig, err := eccutils.ECCSignature([]byte(msg), privateKey)
-	// hmacStr := SHA256HMAC([]byte(msg), secretKey)
-
-	host := "www.xdaex.com"
+	host := "api-preview.pro.hashkey.com"
 	path := "/APITradeWS/v1/messages"
 
 	// Public Message Flow: Subscribe to ticker requests
@@ -62,8 +52,8 @@ func main() {
 	// { "type": "subscribe", "channel": {"user":[API-KEY, API-SIGNATURE, AUTHTYPE]} }
 	privateChannel := make(map[string][]string)
 
-	privateChannel["user"] = []string{apiKey, string(sig), authType}
-	// privateChannel["user"] = []string{apiKeyHMAC, hmacStr, authType}
+	// privateChannel["user"] = []string{apiKey, sig, authType}
+	privateChannel["user"] = []string{apiKeyHMAC, hmacStr, authType}
 
 	privateMessage := RequestMessage{
 		Type:    "subscribe",

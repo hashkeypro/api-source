@@ -19,15 +19,14 @@ func main() {
 	// 公钥-私钥
 
 	// preview
-	// baseURL := "https://api-preview.xdaex.com/APITrade"
-	baseURL := "https://xdaex.com/APITrade"
+	baseURL := "https://api-preview.pro.hashkey.com/APITrade"
 	apiKey := "MTU0MjEwNDAwMTA1NjAwMDAwMDAwNTQ="
 	privateKey := "uvX6WIUzE5jJLMszT7elkTMKgRZEoYkx7X7mTpPWyXo="
 
 	// HMAC
 	// 消息验证码
-	apiKeyHMAC := "MTU0MjA3OTY5NjUzMDAwMDAwMDAwNTQ="
-	secretKey := "TjjKc1jwm6GDXHplKd11qku5xtC4oT8zqGfQIoMKN+U="
+	apiKeyHMAC := "MTU0NDUwODQ0NjI0NTAwMDAwMDAwNTQ="
+	secretKey := "vprggEasLOksdmut6WcFvuv4oUuAbewdkGJY1fgAvBw="
 
 	// generate the message to sign
 	// 生成待签消息
