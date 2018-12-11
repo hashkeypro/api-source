@@ -7,7 +7,7 @@
         public class Test2 {
             public static void main(String[] args) throws Exception{
 
-                String BASE_URL = "https://www.xdaex.com/APITrade";
+                String BASE_URL = "https://pro.hashkey.com/APITrade";
                 String API_KEY = "1232144332323423";
                 String PRIVATE_KEY = "Bh9tSghsfhjdFHKJAfajk78fa980kaFDda78sa/fda=";
 
@@ -68,7 +68,7 @@
         // 请下载使用Java SDK
         public class Sample {
 
-            static final String BASE_URL = "https://www.xdaex.com/APITrade";
+            static final String BASE_URL = "https://pro.hashkey.com/APITrade";
             static final String API_KEY = "12345678901230987654321";
             static final String PRIVATE_KEY = "Bh9tSghsfhjdkaFDda78sa/fda=";
 

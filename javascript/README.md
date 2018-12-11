@@ -5,7 +5,7 @@ WebSocket subscriptions include public and private message flows. Here are javas
 * Private Flow Subscription Sample ^私有消息流订阅示例
     ```javascript
     const WebSocket = require('ws');
-    const ws = new WebSocket('wss://api-test.xdaex.com/APITradeWS/v1/messages', {
+    const ws = new WebSocket('wss://api-test.pro.hashkey.com/APITradeWS/v1/messages', {
         checkServerIdentity: () => {}
     });
     const data = "WSS/APITradeWS/v1/messages";
@@ -43,7 +43,7 @@ WebSocket subscriptions include public and private message flows. Here are javas
 * Public Flow Subscription Sample ^公有消息流订阅示例
     ```javascript
     const WebSocket = require('ws');
-    const ws = new WebSocket('wss://api-test.xdaex.com/APITradeWS/v1/messages', {
+    const ws = new WebSocket('wss://api-test.pro.hashkey.com/APITradeWS/v1/messages', {
         checkServerIdentity: () => {}
     });
     const data = "WSS/APITradeWS/v1/messages";
