@@ -10,4 +10,4 @@ async def Public_Message_Flow(uri):
         
 if __name__ == '__main__': 
     asyncio.get_event_loop().run_until_complete(
-        hello("wss://pro.hashkey.com/APITradeWS/v1/messages"))
+        Public_Message_Flow("wss://pro.hashkey.com/APITradeWS/v1/messages"))

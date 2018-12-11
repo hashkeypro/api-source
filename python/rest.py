@@ -87,7 +87,7 @@ class Signer:
 
 class Auth:
     @staticmethod
-    def XDAEX(key: str, secret: str, method: str, path: str, body: str = "") -> dict:
+    def HashKey(key: str, secret: str, method: str, path: str, body: str = "") -> dict:
         timestamp = int((datetime.now().timestamp()) * 1000)
         sign_msg = f"{timestamp}{method}{path}{body}".replace(" ", "")
         sha256_digest = hashlib.sha256(sign_msg.encode()).hexdigest()
@@ -95,16 +95,17 @@ class Auth:
         return {"API-SIGNATURE": Signer.sign_message(json_msg=sha256_digest, secret=secret),
                 "API-KEY": key,
                 "API-TIMESTAMP": str(timestamp),
-                "Content-Type": "application/json"}
+                "Content-Type": "application/json",
+                "AUTH-TYPE": "PUB-PRIV"}
 
 
 if __name__ == '__main__':
-    api_key = ""
-    api_secret = ""
-    path = "/v1/account"
+    api_key = "MTU0MjEwNDAwMTA1NjAwMDAwMDAwNTQ="
+    api_secret = "uvX6WIUzE5jJLMszT7elkTMKgRZEoYkx7X7mTpPWyXo="
+    path = "/v1/account/assets"
 
-    headers = Auth.XDAEX(key=api_key, secret=api_secret, method="GET", path=path)
-    response = requests.get("https://api-test.xdaex.com/APITrade/v1/account", headers=headers)
+    headers = Auth.HashKey(key=api_key, secret=api_secret, method="GET", path=path)
+    response = requests.get("https://api-preview.pro.hashkey.com/APITrade/v1/account/assets", headers=headers)
 
     if response.status_code == 200:
         pprint(response.json())
