@@ -1,8 +1,11 @@
+#ifndef __HK__H__
+#define __HK__H__
+
 #include <bitcoin/bitcoin.hpp> // https://github.com/libbitcoin/libbitcoin
 #include <ethash/keccak.hpp> // https://github.com/chfast/ethash
 #include <nlohmann/json.hpp> // https://github.com/nlohmann/json/tree/master
 
-namespace xdaex {
+namespace hashkey {
 
     const int DIGEST_SIZE = 32;
     const int SK_SIZE = 32;
@@ -33,3 +36,5 @@ namespace xdaex {
         return ParseSignature(sig).dump();
     }
 }
+
+#endif

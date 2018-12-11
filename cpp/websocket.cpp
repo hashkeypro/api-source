@@ -37,12 +37,12 @@ int main()
 {
     // key pair and signature
     // 密钥对和签名
-    const std::string secret = "VAoASo72TbEYsasQAD64nHlZVyBglPw13kfvlqM1j5Y=";
-    const std::string apikey = "15381937145820000000054";
+    const std::string secret = "uvX6WIUzE5jJLMszT7elkTMKgRZEoYkx7X7mTpPWyXo=";
+    const std::string apikey = "MTU0MjEwNDAwMTA1NjAwMDAwMDAwNTQ=";
     const std::string sign_msg = "WSS/APITradeWS/v1/messages";
-    auto sig = xdaex::ECCSignature(sign_msg, secret);
+    auto sig = hashkey::ECCSignature(sign_msg, secret);
 
-    const std::string url = "wss://api-test.xdaex.com/APITradeWS/v1/messages";
+    const std::string url = "wss://api-preview.pro.hashkey.com/APITradeWS/v1/messages";
 
     // Public Message Flow: Subscribe to ticker requests
     // 公有消息流：订阅逐笔成交信息
@@ -56,7 +56,7 @@ int main()
     // { "type": "unsubscribe ", "channel": {"user":[API-KEY, signature]} }
     nlohmann::json private_subscribe;
     private_subscribe["type"] = "subscribe";
-    private_subscribe["channel"]["user"] = {apikey, sig};
+    private_subscribe["channel"]["user"] = {apikey, sig, "PUB-PRIV"};
 
     // handshake
     // 握手

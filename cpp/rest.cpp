@@ -18,10 +18,10 @@ using namespace concurrency::streams;
 
 int main(int argc, char* argv[])
 {
-    const std::string path = "/v1/account";
-    const std::string secret = "VAoASo72TbEYsasQAD64nHlZVyBglPw13kfvlqM1j5Y=";
-    const std::string apikey = "15381937145820000000054";
-    const std::string base_url = "https://api-test.xdaex.com/APITrade";
+    const std::string path = "/v1/referenceData/rateLimit";
+    const std::string secret = "uvX6WIUzE5jJLMszT7elkTMKgRZEoYkx7X7mTpPWyXo=";
+    const std::string apikey = "MTU0MjEwNDAwMTA1NjAwMDAwMDAwNTQ=";
+    const std::string base_url = "https://api-preview.pro.hashkey.com/APITrade";
 
     // generate the message to sign
     // 生成待签消息并签名
@@ -32,7 +32,7 @@ int main(int argc, char* argv[])
     auto msg_data_slice = libbitcoin::data_slice((const unsigned char *)msg.c_str(), (const unsigned char *)msg.c_str() + msg.size());
     auto sha256sum = libbitcoin::sha256_hash(msg_data_slice);
     auto sha256sum_hex = libbitcoin::encode_base16(sha256sum);
-    auto sig = xdaex::ECCSignature(sha256sum_hex, secret);
+    auto sig = hashkey::ECCSignature(sha256sum_hex, secret);
 
     auto fileStream = std::make_shared<ostream>();
     // Open stream to log file.
@@ -49,6 +49,7 @@ int main(int argc, char* argv[])
         request.headers().add("API-KEY", apikey);
         request.headers().add("API-SIGNATURE", sig);
         request.headers().add("API-TIMESTAMP", timestamp_str);
+        request.headers().add("AUTH-TYPE", "PUB-PRIV");
         return client.request(request);
     })
 
