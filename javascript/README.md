@@ -14,7 +14,7 @@ WebSocket subscriptions include public and private message flows. Here are javas
     const subscribePrivateMsg = {
         type: "subscribe",
         channel: {
-            user:["13267813673212", JSON.Stringify(sign)]
+            user:["13267813673212", JSON.Stringify(sign), "PUB-PRIV"]
         }
     }
     const subscribePrivateMsg = {
@@ -47,7 +47,7 @@ WebSocket subscriptions include public and private message flows. Here are javas
         checkServerIdentity: () => {}
     });
     const data = "WSS/APITradeWS/v1/messages";
-    const signature = {"r":"FDS/fhdkjaf89YUIfda89fahkjfdaTYUF32IUfda=", "s":"NFMFDsfdsgkj678678431/fahkjaip68fahjKSDh=","v":28}；
+
     ws.on('open', ()=>{
         console.log('WebSocket open')
         ws.send('{"type":"subscribe", "channel":{"ticker":["ETH-BTC"]}}');
