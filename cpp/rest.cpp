@@ -29,10 +29,8 @@ int main(int argc, char* argv[])
     timestamp << std::time(nullptr) * 1000;
     std::string timestamp_str = timestamp.str();
     std::string msg = timestamp_str + "GET" + path;
-    auto msg_data_slice = libbitcoin::data_slice((const unsigned char *)msg.c_str(), (const unsigned char *)msg.c_str() + msg.size());
-    auto sha256sum = libbitcoin::sha256_hash(msg_data_slice);
-    auto sha256sum_hex = libbitcoin::encode_base16(sha256sum);
-    auto sig = hashkey::ECCSignature(sha256sum_hex, secret);
+
+    auto sig = hashkey::ECCSignature(msg, secret);
 
     auto fileStream = std::make_shared<ostream>();
     // Open stream to log file.
