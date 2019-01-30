@@ -3,7 +3,6 @@ from bitcoin import privkey_to_pubkey
 import sha3
 import base64
 import json
-import hashlib
 
 from datetime import datetime
 from pprint import pprint
@@ -90,9 +89,8 @@ class Auth:
     def HashKey(key: str, secret: str, method: str, path: str, body: str = "") -> dict:
         timestamp = int((datetime.now().timestamp()) * 1000)
         sign_msg = f"{timestamp}{method}{path}{body}".replace(" ", "")
-        sha256_digest = hashlib.sha256(sign_msg.encode()).hexdigest()
 
-        return {"API-SIGNATURE": Signer.sign_message(json_msg=sha256_digest, secret=secret),
+        return {"API-SIGNATURE": Signer.sign_message(json_msg=sign_msg, secret=secret),
                 "API-KEY": key,
                 "API-TIMESTAMP": str(timestamp),
                 "Content-Type": "application/json",
@@ -102,10 +100,10 @@ class Auth:
 if __name__ == '__main__':
     api_key = "MTU0MjEwNDAwMTA1NjAwMDAwMDAwNTQ="
     api_secret = "uvX6WIUzE5jJLMszT7elkTMKgRZEoYkx7X7mTpPWyXo="
-    path = "/v1/account/assets"
+    path = "/v1/info/time"
 
     headers = Auth.HashKey(key=api_key, secret=api_secret, method="GET", path=path)
-    response = requests.get("https://api-preview.pro.hashkey.com/APITrade/v1/account/assets", headers=headers)
+    response = requests.get("https://api-preview.pro.hashkey.com/APITrade/v1/info/time", headers=headers)
 
     if response.status_code == 200:
         pprint(response.json())
