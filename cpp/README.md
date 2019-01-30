@@ -7,10 +7,15 @@
 
 # Samples
 
-* eccutils
+* eccutils.h
   + header for ECDSA
-* rest
-  + including ECDSA
-* websocket
+* rest.cpp
+  + use ECDSA
+* websocket.cpp
   + public message flow
   + private message flow (ECDSA)
+* rest-hmac.cpp
+  + use HMAC
+* websocket-hmac.cpp
+  + public message flow
+  + private message flow (HMAC)
