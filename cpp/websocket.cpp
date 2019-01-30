@@ -53,7 +53,7 @@ int main()
 
     // Private Message Flow
     // 私有消息流
-    // { "type": "unsubscribe ", "channel": {"user":[API-KEY, signature]} }
+    // { "type": "unsubscribe ", "channel": {"user":[API-KEY, signature, "PUB-PRIV"]} }
     nlohmann::json private_subscribe;
     private_subscribe["type"] = "subscribe";
     private_subscribe["channel"]["user"] = {apikey, sig, "PUB-PRIV"};
