@@ -1,7 +1,6 @@
 package main
 
 import (
-	"crypto/sha256"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -32,16 +31,14 @@ func main() {
 	// 生成待签消息
 	timestamp := strconv.FormatInt(time.Now().Unix()*1000, 10)
 	originData := []byte(timestamp + "GET" + apiPath)
-	hashedData := sha256.Sum256(originData)
-	hashedDataHex := []byte(fmt.Sprintf("%x", hashedData))
 
 	// signature
 	// 签名
-	signStr, err := hashkey.ECCSignature(hashedDataHex, privateKey)
+	signStr, err := hashkey.ECCSignature(originData, privateKey)
 
 	// hmac
 	// 消息验证码
-	hmacStr := hashkey.SHA256HMAC(hashedDataHex, secretKey)
+	hmacStr := hashkey.SHA256HMAC(originData, secretKey)
 
 	req, err := http.NewRequest("GET", baseURL+apiPath, nil)
 	if err != nil {
