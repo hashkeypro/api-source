@@ -3,7 +3,7 @@ import websockets
 
 async def Public_Message_Flow(uri):
     async with websockets.connect(uri) as websocket:
-        await websocket.send('''{ "type": "subscribe", "channel": {"ticker":["ETH-BTC", "CYB-BTC"]} }''')
+        await websocket.send('''{ "type": "subscribe", "channel": {"level2@10":["ETH-BTC"]} }''')
         while (1) :
             response = await websocket.recv()
             print(response)
