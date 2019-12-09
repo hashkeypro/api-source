@@ -42,7 +42,7 @@ int main()
     const std::string sign_msg = "WSS/APITradeWS/v1/messages";
     auto sig = hashkey::ECCSignature(sign_msg, secret);
 
-    const std::string url = "wss://api-preview.pro.hashkey.com/APITradeWS/v1/messages";
+    const std::string url = "wss://preview-pro.hashkey.com/APITradeWS/v1/messages";
 
     // Public Message Flow: Subscribe to ticker requests
     // 公有消息流：订阅逐笔成交信息

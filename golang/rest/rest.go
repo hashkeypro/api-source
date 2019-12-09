@@ -18,7 +18,7 @@ func main() {
 	// 公钥-私钥
 
 	// preview
-	baseURL := "https://api-preview.pro.hashkey.com/APITrade"
+	baseURL := "https://preview-pro.hashkey.com/APITrade"
 	apiKey := "MTU0MjEwNDAwMTA1NjAwMDAwMDAwNTQ="
 	privateKey := "uvX6WIUzE5jJLMszT7elkTMKgRZEoYkx7X7mTpPWyXo="
 

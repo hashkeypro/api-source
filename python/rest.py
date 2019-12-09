@@ -103,7 +103,7 @@ if __name__ == '__main__':
     path = "/v1/info/time"
 
     headers = Auth.HashKey(key=api_key, secret=api_secret, method="GET", path=path)
-    response = requests.get("https://api-preview.pro.hashkey.com/APITrade/v1/info/time", headers=headers)
+    response = requests.get("https://preview-pro.hashkey.com/APITrade/v1/info/time", headers=headers)
 
     if response.status_code == 200:
         pprint(response.json())

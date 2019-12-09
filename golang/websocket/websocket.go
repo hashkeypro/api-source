@@ -33,7 +33,7 @@ func main() {
 	secretKey := "vprggEasLOksdmut6WcFvuv4oUuAbewdkGJY1fgAvBw="
 	hmacStr := hashkey.SHA256HMAC([]byte(msg), secretKey)
 
-	host := "api-preview.pro.hashkey.com"
+	host := "preview-pro.hashkey.com"
 	path := "/APITradeWS/v1/messages"
 
 	// Public Message Flow: Subscribe to ticker requests

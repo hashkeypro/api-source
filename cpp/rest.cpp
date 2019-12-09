@@ -21,7 +21,7 @@ int main(int argc, char* argv[])
     const std::string path = "/v1/referenceData/rateLimit";
     const std::string secret = "uvX6WIUzE5jJLMszT7elkTMKgRZEoYkx7X7mTpPWyXo=";
     const std::string apikey = "MTU0MjEwNDAwMTA1NjAwMDAwMDAwNTQ=";
-    const std::string base_url = "https://api-preview.pro.hashkey.com/APITrade";
+    const std::string base_url = "https://preview-pro.hashkey.com/APITrade";
 
     // generate the message to sign
     // 生成待签消息并签名
